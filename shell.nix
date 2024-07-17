@@ -38,5 +38,6 @@ curPkgs
     # Command-line utility for working with GitHub
     # Used by nixpkgs-review to fetch eval results
     gh
+    mypy
   ];
 }
