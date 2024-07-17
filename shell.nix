@@ -64,6 +64,7 @@ curPkgs
     pkgs.gh
     # treefmt wrapper
     fmt.pkg
+    fmt.mypy
   ];
 }
 // {
