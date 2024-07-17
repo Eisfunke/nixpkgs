@@ -26,5 +26,6 @@ pkgs.mkShellNoCC {
     # The default formatter for Nix code
     # https://github.com/NixOS/nixfmt
     pkgs.nixfmt-rfc-style
+    pkgs.mypy
   ];
 }
