@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
   ];
 
   postInstall = ''
-    install -Dm0755 src/{c2enc,c2sim,freedv_rx,freedv_tx,cohpsk_*,fdmdv_*,fsk_*,ldpc_*,ofdm_*} -t $out/bin/
+    install -Dm0755 src/{c2enc,c2dec,c2sim,freedv_rx,freedv_tx,cohpsk_*,fdmdv_*,fsk_*,ldpc_*,ofdm_*} -t $out/bin/
   '';
 
   # Swap keyword order to satisfy SWIG parser
