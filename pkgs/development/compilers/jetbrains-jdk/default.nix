@@ -24,6 +24,8 @@
   nspr,
   libdrm,
   libgbm,
+  vulkan-headers,
+  shaderc,
   wayland,
   udev,
 }:
@@ -41,8 +43,8 @@ let
 in
 jdk.overrideAttrs (oldAttrs: rec {
   pname = "jetbrains-jdk" + lib.optionalString withJcef "-jcef";
-  javaVersion = "21.0.6";
-  build = "895.109";
+  javaVersion = "21.0.7";
+  build = "968.14";
   # To get the new tag:
   # git clone https://github.com/jetbrains/jetbrainsruntime
   # cd jetbrainsruntime
@@ -55,12 +57,12 @@ jdk.overrideAttrs (oldAttrs: rec {
     owner = "JetBrains";
     repo = "JetBrainsRuntime";
     rev = "jb${version}";
-    hash = "sha256-Neh0PGer4JnNaForBKRlGPLft5cae5GktreyPRNjFCk=";
+    hash = "sha256-oiUWgAJuNgZZABtL/vCU498Hanq3Xz7hf1QSoG5onF4=";
   };
 
   BOOT_JDK = jdk.home;
   # run `git log -1 --pretty=%ct` in jdk repo for new value on update
-  SOURCE_DATE_EPOCH = 1742960328;
+  SOURCE_DATE_EPOCH = 1745814750;
 
   patches = [ ];
 
@@ -132,6 +134,7 @@ jdk.overrideAttrs (oldAttrs: rec {
         libdrm
         libgbm
         wayland
+        vulkan-headers
         udev
       ]
     }"
@@ -151,11 +154,16 @@ jdk.overrideAttrs (oldAttrs: rec {
     done
   '';
 
+  buildInputs = [
+    vulkan-headers
+  ] ++ oldAttrs.buildInputs;
+
   nativeBuildInputs = [
     git
     autoconf
     unzip
     rsync
+    shaderc
   ] ++ oldAttrs.nativeBuildInputs;
 
   meta = with lib; {
