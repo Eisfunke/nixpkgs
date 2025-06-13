@@ -21,4 +21,6 @@ mkKdeDerivation {
     acl
     attr
   ];
+
+  excludeDependencies = [ "kwallet" ];
 }
