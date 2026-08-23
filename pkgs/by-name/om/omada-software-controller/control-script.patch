@@ -1,7 +1,14 @@
-diff -uNr Omada_SDN_Controller_v6.2.14.11_linux_x64/Omada_Network_Application_v6.2.14.11_linux_x64/bin/control.sh Omada_SDN_Controller_v6.2.14.11_linux_x64/Omada_Network_Application_v6.2.14.11_linux_x64/bin/control.sh
 --- Omada_SDN_Controller_v6.2.14.11_linux_x64/Omada_Network_Application_v6.2.14.11_linux_x64/bin/control.sh
 +++ Omada_SDN_Controller_v6.2.14.11_linux_x64/Omada_Network_Application_v6.2.14.11_linux_x64/bin/control.sh
-@@ -31,7 +31,7 @@ MAIN_CLASS="com.tplink.smb.omada.starter.OmadaLinuxMain"
+@@ -31,14 +31,14 @@
+ MAIN_CLASS="com.tplink.smb.omada.starter.OmadaLinuxMain"
+ STARTUP_INFO_PATH="${OMADA_HOME}/data/startupInfo"
+ # Define the file path to save the previous MongoDB version
+-LAST_VERSION_FILE="/opt/tplink/EAPController/data/check-mongo/LAST_MAIN_VERSION.info"
++LAST_VERSION_FILE="${OMADA_HOME}/data/check-mongo/LAST_MAIN_VERSION.info"
+ # Define a legal sequence for upgrading major versions (in order, without skipping levels)
+ VALID_VERSIONS=("3.0" "3.2" "3.4" "3.6" "4.0" "4.2" "4.4" "5.0" "6.0" "7.0" "8.0")
+
  OMADA_USER=${OMADA_USER:-root}
  OMADA_GROUP=$(id -gn ${OMADA_USER})
 
@@ -10,8 +17,20 @@ diff -uNr Omada_SDN_Controller_v6.2.14.11_linux_x64/Omada_Network_Application_v6
 
  help() {
      echo "usage: $0 help"
-@@ -81,8 +81,12 @@ check_version() {
-     echo "Omada Controller v5.15.20.18 for Linux (X64)"
+@@ -55,11 +55,6 @@
+ EOF
+ }
+
+-# root permission check
+-check_root_perms() {
+-    [ $(id -ru) != 0 ] && { echo "You must be root to execute this script. Exit." 1>&2; exit 1; }
+-}
+-
+ # check if ${OMADA_USER} has the permission to ${DATA_DIR} ${LOG_DIR} ${WORK_DIR}
+ check_omada_user() {
+     OMADA_UID=$(id -u ${OMADA_USER} 2>&1)
+@@ -161,8 +156,12 @@
+     echo "${CURRENT_MONGO_VERSION}" > "$LAST_VERSION_FILE"
  }
 
 -# root permission check

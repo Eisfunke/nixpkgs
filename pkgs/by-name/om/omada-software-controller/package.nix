@@ -85,9 +85,6 @@ stdenv.mkDerivation rec {
     ln -s ${dataDir}/data $out/data
     ln -s ${dataDir}/properties $out/properties
 
-    # Create link for mongod binary in expected location
-    ln -s ${mongodb}/bin/mongod $out/bin/mongod
-
     # Create wrapped executables with different names
     makeWrapper $out/bin/control.sh $out/bin/omada \
       --prefix PATH : "${lib.makeBinPath runtimeDeps}"
