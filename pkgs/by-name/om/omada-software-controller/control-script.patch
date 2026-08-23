@@ -1,6 +1,6 @@
-diff -uNr Omada_SDN_Controller_v5.15.20.18_linux_x64/Omada_SDN_Controller_v5.15.20.18_linux_x64/bin/control.sh Omada_SDN_Controller_v5.15.20.18_linux_x64/Omada_SDN_Controller_v5.15.20.18_linux_x64/bin/control.sh
---- Omada_SDN_Controller_v5.15.20.18_linux_x64/Omada_SDN_Controller_v5.15.20.18_linux_x64/bin/control.sh
-+++ Omada_SDN_Controller_v5.15.20.18_linux_x64/Omada_SDN_Controller_v5.15.20.18_linux_x64/bin/control.sh
+diff -uNr Omada_SDN_Controller_v6.2.14.11_linux_x64/Omada_Network_Application_v6.2.14.11_linux_x64/bin/control.sh Omada_SDN_Controller_v6.2.14.11_linux_x64/Omada_Network_Application_v6.2.14.11_linux_x64/bin/control.sh
+--- Omada_SDN_Controller_v6.2.14.11_linux_x64/Omada_Network_Application_v6.2.14.11_linux_x64/bin/control.sh
++++ Omada_SDN_Controller_v6.2.14.11_linux_x64/Omada_Network_Application_v6.2.14.11_linux_x64/bin/control.sh
 @@ -31,7 +31,7 @@ MAIN_CLASS="com.tplink.smb.omada.starter.OmadaLinuxMain"
  OMADA_USER=${OMADA_USER:-root}
  OMADA_GROUP=$(id -gn ${OMADA_USER})

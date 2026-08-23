@@ -8,7 +8,7 @@
   coreutils,
   curl,
   jsvc,
-  mongodb-7_0,
+  mongodb-ce,
   openjdk17,
   procps,
   which,
@@ -21,8 +21,7 @@
   gnused,
   # Pin to supported OpenJDK version 17 to avoid unsupported dependency upgrades
   jdk ? openjdk17,
-  # Pin to supported (with Omada version 5.14.20) MongoDB 7 to avoid unsupported dependency upgrades
-  mongodb ? mongodb-7_0,
+  mongodb ? mongodb-ce,
   dataDir ? "/var/lib/omada",
 }:
 
@@ -38,11 +37,11 @@ in
 
 stdenv.mkDerivation rec {
   pname = "omada-software-controller";
-  version = "5.15.20.18";
+  version = "6.2.14.11";
 
   src = fetchurl {
-    url = "https://static.tp-link.com/upload/software/2025/202503/20250331/Omada_SDN_Controller_v5.15.20.18_linux_x64.tar.gz";
-    hash = "sha256-VgzwB7EcGdSCC4Wwq1VxM5MCTxspnl3ctigLRTLHg54=";
+    url = "https://static.tp-link.com/upload/software/2026/202607/20260717/Omada_SDN_Controller_v6.2.14.11_linux_x64.tar.gz";
+    hash = "sha256-I0J/c92TBRpiCwgaq1X/zEz7IJUaAgodNXxD6CR4qnQ=";
   };
 
   patches = [
@@ -70,7 +69,7 @@ stdenv.mkDerivation rec {
     runHook preInstall
 
     mkdir -p $out/defaults
-    cp -r Omada_SDN_Controller_v${version}_linux_x64/* $out
+    cp -r Omada_Network_Application_v${version}_linux_x64/* $out
     patchShebangs $out
 
     # Move away the persistable data and property directories, storing them as defaults
